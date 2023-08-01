@@ -77,16 +77,34 @@ static void sp5100_restore_gpio(u8 reg, u8 value)
  *
  * SPD address table - porting required
  */
-static const UINT8 spdAddressLookup [2] [2] [2] = { // socket, channel, dimm
+static const UINT8 spdAddressLookup [4] [4] [2] = { // socket, channel, dimm
 	/* socket 0 */
 	{
 		{0x50, 0x51},
 		{0x52, 0x53},
+		{0x54, 0x55},
+		{0x56, 0x57},
 	},
 	/* socket 1 */
 	{
 		{0x50, 0x51},
 		{0x52, 0x53},
+		{0x54, 0x55},
+		{0x56, 0x57},
+	},
+	/* socket 2 */
+	{
+		{0x50, 0x51},
+		{0x52, 0x53},
+		{0x54, 0x55},
+		{0x56, 0x57},
+	},
+	/* socket 3 */
+	{
+		{0x50, 0x51},
+		{0x52, 0x53},
+		{0x54, 0x55},
+		{0x56, 0x57},
 	},
 };
 
