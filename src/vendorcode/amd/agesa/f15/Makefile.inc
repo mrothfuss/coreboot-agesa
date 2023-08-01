@@ -173,6 +173,7 @@ agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrLowPwrPstate.c
 agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrMicrocodePatch06000425.c
 agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrMicrocodePatch0600050D_Enc.c
 agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrMicrocodePatch06000624_Enc.c
+agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrMicrocodePatch0600063E_Enc.c
 agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrMicrocodePatchTables.c
 agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrMsgBasedC1e.c
 agesa_lib_src  += ./Proc/CPU/Family/0x15/OR/F15OrMsrTables.c
