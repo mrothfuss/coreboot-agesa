@@ -1,11 +1,13 @@
 ##
 ## This file is part of the coreboot project.
 ##
-## Copyright (C) 2009 Ronald G. Minnich
+## Copyright (C) 2008 Uwe Hermann <uwe@hermann-uwe.de>
+## Copyright (C) 2012 Advanced Micro Devices, Inc.
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; version 2 of the License.
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
 ##
 ## This program is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,12 +19,6 @@
 ## Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 ##
 
-subdirs-y += w83627dhg
-subdirs-y += w83627ehg
-subdirs-y += w83627hf
-subdirs-y += w83627thg
-subdirs-y += w83627uhg
-subdirs-y += w83667hg-a
-subdirs-y += w83697hf
-subdirs-y += w83977f
-subdirs-y += w83977tf
+romstage-$(CONFIG_SUPERIO_WINBOND_W83667HG_A) += early_serial.c
+ramstage-$(CONFIG_SUPERIO_WINBOND_W83667HG_A) += superio.c
+
