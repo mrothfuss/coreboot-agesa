@@ -3,6 +3,8 @@ if VENDOR_SUPERMICRO
 choice
 	prompt "Mainboard model"
 
+config BOARD_SUPERMICRO_H8DGI
+	bool "H8DGI"
 config BOARD_SUPERMICRO_H8DME
 	bool "H8DME-2"
 config BOARD_SUPERMICRO_H8DMR
@@ -32,6 +34,7 @@ config BOARD_SUPERMICRO_X7DB8
 
 endchoice
 
+source "src/mainboard/supermicro/h8dgi/Kconfig"
 source "src/mainboard/supermicro/h8dme/Kconfig"
 source "src/mainboard/supermicro/h8dmr/Kconfig"
 source "src/mainboard/supermicro/h8dmr_fam10/Kconfig"
