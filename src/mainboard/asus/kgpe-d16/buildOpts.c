@@ -307,6 +307,20 @@ CONST CPU_HT_DEEMPHASIS_LEVEL ROMDATA kgpe_d16_deemphasis_list[] =
 	{1, 2, HT_FREQUENCY_2400M, HT_FREQUENCY_2400M, DeemphasisLevelMinus8, DcvLevelMinus7},
 	{1, 2, HT_FREQUENCY_2600M, HT_FREQUENCY_2600M, DeemphasisLevelMinus11pre8, DcvLevelMinus9},
 
+	{2, 0, HT3_FREQUENCY_MIN, HT_FREQUENCY_1600M, DeemphasisLevelNone, DcvLevelNone},
+	{2, 0, HT_FREQUENCY_1800M, HT_FREQUENCY_1800M, DeemphasisLevelMinus3, DcvLevelMinus5},
+	{2, 0, HT_FREQUENCY_2000M, HT_FREQUENCY_2000M, DeemphasisLevelMinus6, DcvLevelMinus5},
+	{2, 0, HT_FREQUENCY_2200M, HT_FREQUENCY_2200M, DeemphasisLevelMinus6, DcvLevelMinus7},
+	{2, 0, HT_FREQUENCY_2400M, HT_FREQUENCY_2400M, DeemphasisLevelMinus8, DcvLevelMinus7},
+	{2, 0, HT_FREQUENCY_2600M, HT_FREQUENCY_2600M, DeemphasisLevelMinus11pre8, DcvLevelMinus9},
+
+	{3, 0, HT3_FREQUENCY_MIN, HT_FREQUENCY_1600M, DeemphasisLevelNone, DcvLevelNone},
+	{3, 0, HT_FREQUENCY_1800M, HT_FREQUENCY_1800M, DeemphasisLevelMinus3, DcvLevelMinus5},
+	{3, 0, HT_FREQUENCY_2000M, HT_FREQUENCY_2000M, DeemphasisLevelMinus6, DcvLevelMinus5},
+	{3, 0, HT_FREQUENCY_2200M, HT_FREQUENCY_2200M, DeemphasisLevelMinus6, DcvLevelMinus7},
+	{3, 0, HT_FREQUENCY_2400M, HT_FREQUENCY_2400M, DeemphasisLevelMinus8, DcvLevelMinus7},
+	{3, 0, HT_FREQUENCY_2600M, HT_FREQUENCY_2600M, DeemphasisLevelMinus11pre8, DcvLevelMinus9},
+
 	/* Coherent link deemphasis. */
 	{HT_LIST_MATCH_ANY, HT_LIST_MATCH_ANY, HT3_FREQUENCY_MIN, HT_FREQUENCY_1600M, DeemphasisLevelNone, DcvLevelNone},
 	{HT_LIST_MATCH_ANY, HT_LIST_MATCH_ANY, HT_FREQUENCY_1800M, HT_FREQUENCY_1800M, DeemphasisLevelMinus3, DcvLevelMinus3},

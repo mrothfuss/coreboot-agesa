@@ -19,7 +19,7 @@
 chip northbridge/amd/agesa/family15/root_complex
 	device cpu_cluster 0 on
 		chip cpu/amd/agesa/family15
-			device lapic 0x10 on end #f15
+			device lapic 0x20 on end #f15
 		end
 	end
 	device domain 0 on
@@ -40,10 +40,12 @@ chip northbridge/amd/agesa/family15/root_complex
 					device pci 9.0 on  end # GPP3a Port4  x1 NIC A
 					device pci a.0 on  end # GPP3a Port5  x1 NIC B
 					device pci b.0 on  end # PCIE 4
+					device pci c.0 on  end # PCIE 5
+					device pci d.0 on  end # PCIE 3
 					register "gpp1_configuration" = "0"   # Configuration 16:0 default
 					register "gpp2_configuration" = "1"   # Configuration 8:8
 					register "gpp3a_configuration" = "2"   # 2 Configuration 4:1:1:0:0:0, 11 Configuration 1:1:1:1:1:1
-					register "port_enable" = "0x0f1c"
+					register "port_enable" = "0x3f1c"
 				end #northbridge/amd/cimx/rd890
 				chip southbridge/amd/cimx/sb700 # it is under NB/SB Link, but on the same pci bus
 					device pci 11.0 on end # SATA
@@ -99,10 +101,9 @@ chip northbridge/amd/agesa/family15/root_complex
 						end #superio/winbond/w83667hg-a
 					end # LPC
 					device pci 14.4 on 
-						device pci 1.0 on end # PCI 0
-						device pci 2.0 on end # PCI 1
-						device pci 3.0 on end # PCI 2
-						device pci 5.0 on end # onboard VGA
+						device pci 1.0 on end # VGA
+						device pci 2.0 on end # Firewire
+						device pci 3.0 on end # PCI 0
 					end # PCI 0x4384
 					device pci 14.5 on end # USB 3
 				end # southbridge/amd/cimx/sb700

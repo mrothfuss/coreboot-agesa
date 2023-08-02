@@ -57,7 +57,7 @@ config MAX_CPUS
 
 config MAX_PHYSICAL_CPUS
 	int
-	default 2
+	default 4
 
 config HW_MEM_HOLE_SIZE_AUTO_INC
 	bool
@@ -114,14 +114,6 @@ config VGA_BIOS_ID
 	string
 	depends on VGA_BIOS
 	default "1a03,2000"
-
-config MMCONF_BUS_NUMBER
-	int
-	default 256
-
-config MMCONF_BASE_ADDRESS
-	int
-	default 0xc0000000
 
 endif # BOARD_ASUS_KGPE_D16
 
