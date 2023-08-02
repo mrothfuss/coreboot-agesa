@@ -821,6 +821,7 @@ F15OrEarlySamplesLoadMicrocode (
   // microprocessor patch block passed in
   GetMicrocodeVersion (&MicrocodeVersion, StdHeader);
   if (MicrocodeVersion == MicrocodePatchPtr->PatchID) {
+    IDS_HDT_CONSOLE (CPU_TRACE, "  Applied microcode patch %08X\n", MicrocodeVersion);
     return (TRUE);
   } else {
     return (FALSE);

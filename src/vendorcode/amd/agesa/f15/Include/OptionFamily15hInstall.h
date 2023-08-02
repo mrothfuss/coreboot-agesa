@@ -426,6 +426,7 @@ extern F_IS_NB_PSTATE_ENABLED F15IsNbPstateEnabled;
       #define F15_OR_UCODE_50D
       #define F15_OR_UCODE_624
       #define F15_OR_UCODE_63E
+      #define F15_OR_UCODE_852
 
       #if AGESA_ENTRY_INIT_EARLY == TRUE
         #if OPTION_EARLY_SAMPLES == TRUE
@@ -440,14 +441,20 @@ extern F_IS_NB_PSTATE_ENABLED F15IsNbPstateEnabled;
           extern  CONST UINT8 ROMDATA CpuF15OrMicrocodePatch06000624_Enc [];
           #undef F15_OR_UCODE_624
           #define F15_OR_UCODE_624 CpuF15OrMicrocodePatch06000624_Enc,
+
+          extern  CONST UINT8 ROMDATA CpuF15OrMicrocodePatch0600063E_Enc [];
+          #undef F15_OR_UCODE_63E
+          #define F15_OR_UCODE_63E CpuF15OrMicrocodePatch0600063E_Enc,
+
+          extern  CONST UINT8 ROMDATA CpuF15OrMicrocodePatch06000852_Enc [];
+          #undef F15_OR_UCODE_852
+          #define F15_OR_UCODE_852 CpuF15OrMicrocodePatch06000852_Enc,
         #endif
-        extern  CONST UINT8 ROMDATA CpuF15OrMicrocodePatch0600063E_Enc [];
-        #undef F15_OR_UCODE_63E
-        #define F15_OR_UCODE_63E CpuF15OrMicrocodePatch0600063E_Enc,
       #endif
 
       CONST UINT8 ROMDATA *CpuF15OrMicroCodePatchArray[] =
       {
+        F15_OR_UCODE_852
         F15_OR_UCODE_63E
         F15_OR_UCODE_624
         F15_OR_UCODE_50D

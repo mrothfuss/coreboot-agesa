@@ -84,6 +84,7 @@ GetF15OrMicrocodeEquivalenceTable (
  */
 STATIC CONST UINT16 ROMDATA CpuF15OrMicrocodeEquivalenceTable[] =
 {
+  0x6020, 0x6020,
   0x6012, 0x6012,
   0x6011, 0x6011,
   0x6010, 0x6010,
@@ -94,6 +95,7 @@ STATIC CONST UINT16 ROMDATA CpuF15OrMicrocodeEquivalenceTable[] =
 // Unencrypted equivalent
 STATIC CONST UINT16 ROMDATA CpuF15OrUnEncryptedMicrocodeEquivalenceTable[] =
 {
+  0x6020, 0x6820,
   0x6012, 0x6812,
   0x6011, 0x6811,
   0x6010, 0x6810,
