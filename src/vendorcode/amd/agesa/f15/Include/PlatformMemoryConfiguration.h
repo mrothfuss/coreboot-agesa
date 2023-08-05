@@ -204,25 +204,29 @@
  *----------------------------------------------------------------------------------------
  */
 
-#define PSO_END           0     ///< Table End
-#define PSO_CKE_TRI       1     ///< CKE Tristate Map
-#define PSO_ODT_TRI       2     ///< ODT Tristate Map
-#define PSO_CS_TRI        3     ///< CS Tristate Map
-#define PSO_MAX_DIMMS     4     ///< Max Dimms per channel
-#define PSO_CLK_SPEED     5     ///< Clock Speed
-#define PSO_DIMM_TYPE     6     ///< Dimm Type
-#define PSO_MEMCLK_DIS    7     ///< MEMCLK Disable Map
-#define PSO_MAX_CHNLS     8     ///< Max Channels per Socket
-#define PSO_BUS_SPEED     9     ///< Max Memory Bus Speed
-#define PSO_MAX_CHIPSELS 10     ///< Max Chipsel per Channel
-#define PSO_MEM_TECH     11     ///< Channel Memory Type
-#define PSO_WL_SEED      12     ///< DDR3 Write Levelization Seed delay
-#define PSO_RXEN_SEED    13     ///< Hardwared based RxEn seed
-#define PSO_NO_LRDIMM_CS67_ROUTING 14     ///< CS6 and CS7 are not Routed to all Memoy slots on a channel for LRDIMMs
-#define PSO_SOLDERED_DOWN_SODIMM_TYPE 15  ///< Soldered down SODIMM type
-#define PSO_LVDIMM_VOLT1_5_SUPPORT 16     ///< Force LvDimm voltage to 1.5V
-#define PSO_MIN_RD_WR_DATAEYE_WIDTH 17    ///< Min RD/WR dataeye width
-#define PSO_CPU_FAMILY_TO_OVERRIDE 18     ///< CPU family signature to tell following PSO macros are CPU family dependent
+#define PSO_END           		0     ///< Table End
+#define PSO_CKE_TRI       		1     ///< CKE Tristate Map
+#define PSO_ODT_TRI       		2     ///< ODT Tristate Map
+#define PSO_CS_TRI        		3     ///< CS Tristate Map
+#define PSO_MAX_DIMMS     		4     ///< Max Dimms per channel
+#define PSO_CLK_SPEED     		5     ///< Clock Speed
+#define PSO_DIMM_TYPE     		6     ///< Dimm Type
+#define PSO_MEMCLK_DIS    		7     ///< MEMCLK Disable Map
+#define PSO_MAX_CHNLS     		8     ///< Max Channels per Socket
+#define PSO_BUS_SPEED     		9     ///< Max Memory Bus Speed
+#define PSO_MAX_CHIPSELS 		10     ///< Max Chipsel per Channel
+#define PSO_MEM_TECH     		11     ///< Channel Memory Type
+#define PSO_WL_UDIMM_SEED      		12     ///< DDR3 Write Levelization Seed delay
+#define PSO_WL_RDIMM_SEED      		13     ///< DDR3 Write Levelization Seed delay
+#define PSO_WL_LRDIMM_SEED     		14     ///< DDR3 Write Levelization Seed delay
+#define PSO_RXEN_UDIMM_SEED    		15     ///< Hardwared based RxEn seed
+#define PSO_RXEN_RDIMM_SEED    		16     ///< Hardwared based RxEn seed
+#define PSO_RXEN_LRDIMM_SEED   		17     ///< Hardwared based RxEn seed
+#define PSO_NO_LRDIMM_CS67_ROUTING	18     ///< CS6 and CS7 are not Routed to all Memoy slots on a channel for LRDIMMs
+#define PSO_SOLDERED_DOWN_SODIMM_TYPE	19  ///< Soldered down SODIMM type
+#define PSO_LVDIMM_VOLT1_5_SUPPORT 	20     ///< Force LvDimm voltage to 1.5V
+#define PSO_MIN_RD_WR_DATAEYE_WIDTH	21    ///< Min RD/WR dataeye width
+#define PSO_CPU_FAMILY_TO_OVERRIDE	22     ///< CPU family signature to tell following PSO macros are CPU family dependent
 
 /*----------------------------------
  * CONDITIONAL PSO SPECIFIC ENTRIES
@@ -306,14 +310,36 @@
 #define DRAM_TECHNOLOGY(SocketID, MemTechType) \
   PSO_MEM_TECH, 7, SocketID, ANY_CHANNEL, ALL_DIMMS, MemTechType, (MemTechType >> 8), (MemTechType >> 16), (MemTechType >> 24)
 
-#define WRITE_LEVELING_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+#define WRITE_LEVELING_UDIMM_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
   Byte6Seed, Byte7Seed, ByteEccSeed) \
-  PSO_WL_SEED, 12, SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+  PSO_WL_UDIMM_SEED, 12, SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
   Byte6Seed, Byte7Seed, ByteEccSeed
 
-#define HW_RXEN_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+#define WRITE_LEVELING_RDIMM_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
   Byte6Seed, Byte7Seed, ByteEccSeed) \
-  PSO_RXEN_SEED, 21, SocketID, ChannelID, DimmID, Byte0Seed, (Byte0Seed >> 8), Byte1Seed, (Byte1Seed >> 8), Byte2Seed, (Byte2Seed >> 8), \
+  PSO_WL_RDIMM_SEED, 12, SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+  Byte6Seed, Byte7Seed, ByteEccSeed
+
+#define WRITE_LEVELING_LRDIMM_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+  Byte6Seed, Byte7Seed, ByteEccSeed) \
+  PSO_WL_LRDIMM_SEED, 12, SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+  Byte6Seed, Byte7Seed, ByteEccSeed
+
+#define HW_RXEN_UDIMM_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+  Byte6Seed, Byte7Seed, ByteEccSeed) \
+  PSO_RXEN_UDIMM_SEED, 21, SocketID, ChannelID, DimmID, Byte0Seed, (Byte0Seed >> 8), Byte1Seed, (Byte1Seed >> 8), Byte2Seed, (Byte2Seed >> 8), \
+  Byte3Seed, (Byte3Seed >> 8), Byte4Seed, (Byte4Seed >> 8), Byte5Seed, (Byte5Seed >> 8), Byte6Seed, (Byte6Seed >> 8), \
+  Byte7Seed, (Byte7Seed >> 8), ByteEccSeed, (ByteEccSeed >> 8)
+
+#define HW_RXEN_RDIMM_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+  Byte6Seed, Byte7Seed, ByteEccSeed) \
+  PSO_RXEN_RDIMM_SEED, 21, SocketID, ChannelID, DimmID, Byte0Seed, (Byte0Seed >> 8), Byte1Seed, (Byte1Seed >> 8), Byte2Seed, (Byte2Seed >> 8), \
+  Byte3Seed, (Byte3Seed >> 8), Byte4Seed, (Byte4Seed >> 8), Byte5Seed, (Byte5Seed >> 8), Byte6Seed, (Byte6Seed >> 8), \
+  Byte7Seed, (Byte7Seed >> 8), ByteEccSeed, (ByteEccSeed >> 8)
+
+#define HW_RXEN_LRDIMM_SEED(SocketID, ChannelID, DimmID, Byte0Seed, Byte1Seed, Byte2Seed, Byte3Seed, Byte4Seed, Byte5Seed, \
+  Byte6Seed, Byte7Seed, ByteEccSeed) \
+  PSO_RXEN_LRDIMM_SEED, 21, SocketID, ChannelID, DimmID, Byte0Seed, (Byte0Seed >> 8), Byte1Seed, (Byte1Seed >> 8), Byte2Seed, (Byte2Seed >> 8), \
   Byte3Seed, (Byte3Seed >> 8), Byte4Seed, (Byte4Seed >> 8), Byte5Seed, (Byte5Seed >> 8), Byte6Seed, (Byte6Seed >> 8), \
   Byte7Seed, (Byte7Seed >> 8), ByteEccSeed, (ByteEccSeed >> 8)
 

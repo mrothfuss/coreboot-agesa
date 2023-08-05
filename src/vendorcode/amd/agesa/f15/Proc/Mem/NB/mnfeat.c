@@ -727,8 +727,19 @@ MemNPrepareRcvrEnDlySeedNb (
     TechPtr->Bytelane = ByteLane;
     if (Pass == 1) {
       // Get platform override seed
-      PlatEstSeed = (UINT16 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration, PSO_RXEN_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, ChipSel >> 1,
-                                                    &(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+      if(NBPtr->ChannelPtr->RegDimmPresent != 0) {
+	      PlatEstSeed = (UINT16 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration,
+	      	PSO_RXEN_RDIMM_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, ChipSel >> 1,
+		&(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+      } else if(NBPtr->ChannelPtr->LrDimmPresent != 0) {
+	      PlatEstSeed = (UINT16 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration,
+	        PSO_RXEN_LRDIMM_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, ChipSel >> 1,
+		&(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+      } else {
+	      PlatEstSeed = (UINT16 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration,
+	        PSO_RXEN_UDIMM_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, ChipSel >> 1,
+		&(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+      }
       // For Pass1, BIOS starts with the delay value obtained from the first pass of write
       // levelization training that was done in DDR3 Training and add a delay value of 3Bh.
       PlatEst = 0x3B;

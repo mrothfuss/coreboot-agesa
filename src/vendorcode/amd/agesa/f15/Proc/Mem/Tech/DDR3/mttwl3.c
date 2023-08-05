@@ -474,8 +474,19 @@ MemTProcConfig3 (
     ASSERT (Speed >= DDR667_FREQUENCY);
 
     // Get platform override seed
-    Seed = (UINT8 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration, PSO_WL_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, Dimm,
-                                          &(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+    if(NBPtr->ChannelPtr->RegDimmPresent != 0) {
+	Seed = (UINT8 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration,
+		PSO_WL_RDIMM_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, Dimm,
+		&(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+    } else if(NBPtr->ChannelPtr->LrDimmPresent != 0) {
+	Seed = (UINT8 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration,
+		PSO_WL_LRDIMM_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, Dimm,
+		&(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+    } else {
+	Seed = (UINT8 *) FindPSOverrideEntry (NBPtr->RefPtr->PlatformMemoryConfiguration,
+		PSO_WL_UDIMM_SEED, MCTPtr->SocketId, ChannelPtr->ChannelID, Dimm,
+		&(NBPtr->MCTPtr->LogicalCpuid), &(NBPtr->MemPtr->StdHeader));
+    }
     for (ByteLane = 0; ByteLane < TechPtr->DlyTableWidth (); ByteLane++) {
       // This includes ECC as byte 8
       CurrentSeed = ((Seed != NULL) ? Seed[ByteLane] : DefaultSeed);
